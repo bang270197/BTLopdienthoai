@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Mobile (name, pin) {
+        this.name=name;
+        this.pin=pin;
+        this.message="";
+        this.inbox=[];
+        this.outbox=[];
+        this.status=true;
+        this.checkstatus=function () {
+            if (this.status==true)
+            {
+                document.write("May da duoc bat"+this.pin+"%"+"</br>");
+            }else {
+                document.write("May da duoc tat"+this.pin+"%");
+            }
+        }
+        this.turnOn=function () {
+            this.status=true;
+            this.pin--;
+        }
+        this.turnOff=function () {
+            this.status=false;
+            this.pin--;
+        }
+        this.chargeBattery=function () {
+           while (this.pin<100)
+           {
+               this.pin++;
+           }
+        }
+        this.writeMessage=function (message) {
+            if(this.status==true)
+            {
+
+                this.message=message;
+                this.pin--;
+            }else {
+                document.write("May da duoc tat");
+            }
+
+        }
+        this.sendMessage=function (namephone) {
+            if(this.status==true){
+                namephone.inbox.push(this.message);
+                this.outbox.push(this.message);
+                this.pin--;
+            }else {
+                document.write("May da duoc tat");
+            }
+
+        }
+        this.getInbox=function () {
+            if(this.status==true){
+                for (var i=0;i<this.inbox.length;i++)
+                {
+                   document.write(this.inbox[i]+",");
+                }
+
+                this.pin--;
+            }else {
+                document.write("May da duoc tat");
+            }
+        }
+        this.getOutbox=function () {
+            if(this.status==true){
+                for (var i=0;i<this.outbox.length;i++)
+                {
+                    document.write(this.outbox[i]+",");
+                }
+
+                this.pin--;
+            }else {
+            document.write("May da duoc tat");
+            }
+
+        }
+    }
+    let ip=new Mobile('iphone',100);
+    let samsung =new Mobile('samsung',100);
+   ip.checkstatus();
+
+
+</script>
+</body>
+</html>
